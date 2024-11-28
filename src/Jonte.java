@@ -1,5 +1,4 @@
 public class Jonte {
 
-    int x = 10;
+    int x = 5;
 }
-
