@@ -41,6 +41,7 @@ public class Main {
         System.out.println("Hello, how would you like to login?");
         System.out.println("1. Guest");
         System.out.println("2. Admin");
+        System.out.println("3. Exit Application");
 
         switch (scanner.nextLine()){
             case "1":
@@ -49,6 +50,9 @@ public class Main {
                 break;
             case "2":
                 adminLogin();
+                break;
+            case "3":
+                runProgram = false;
                 break;
             default:
                 System.out.println("Invalid Input!");
