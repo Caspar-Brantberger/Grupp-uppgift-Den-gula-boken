@@ -26,10 +26,12 @@ public class Main {
                 loginPrompt();
             }
 
-            if(isAdmin) {
+
+            if(isAdmin && runProgram) {
 
                 adminInput();
-            } else {
+            }
+            else if(runProgram) {
 
                 guestInput();
             }
@@ -52,6 +54,7 @@ public class Main {
                 adminLogin();
                 break;
             case "3":
+                isLoggedIn = true;
                 runProgram = false;
                 break;
             default:
@@ -96,7 +99,6 @@ public class Main {
             System.out.println("Successfully logged in as " + userName[indexOfName] + "!");
             isAdmin = true;
             isLoggedIn = true;
-
         }
     }
 
