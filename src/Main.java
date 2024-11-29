@@ -90,7 +90,7 @@ public class Main {
 
         for (Contact c : contacts){
 
-            System.out.println(index + ".");
+            System.out.print(index + ". ");
             c.displayContact();
             index++;
         }
