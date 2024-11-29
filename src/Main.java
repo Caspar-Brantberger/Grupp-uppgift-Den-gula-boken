@@ -1,5 +1,6 @@
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class Main {
@@ -15,9 +16,9 @@ public class Main {
     public static void main(String[] args) {
 
 
-        createContact("Elin", "Jirefalk", "0739709078");
-        createContact("Jonathan", "Jirefalk", "0767747162");
-        createContact("Sven", "Eriksson", "07134578");
+        createContact("Elin", "Jirefalk", "0739709078", "20", "Tistelgatan 11");
+        createContact("Jonathan", "Jirefalk", "0767747162", "23", "Tistelgatan 11");
+        createContact("Elias", "Sjöstedt", "0706419359", "22", "Maskrosgatan 2");
 
         while(runProgram) {
 
@@ -165,12 +166,18 @@ public class Main {
         System.out.println("Please insert phone number of contact");
         String phoneNumber = scanner.nextLine();
 
-        createContact(firstName, lastName, phoneNumber);
+        System.out.println("Please insert age of contact");
+        String age = scanner.nextLine();
+
+        System.out.println("Please insert address of contact");
+        String address = scanner.nextLine();
+
+        createContact(firstName, lastName, phoneNumber, age, address);
 
         System.out.println("Contact Added!");
     }
 
-    public static void createContact(String firstName, String lastName, String phoneNumber) {
+    public static void createContact(String firstName, String lastName, String phoneNumber, String age, String address) {
 
         Contact[] oldList = contacts;
 
@@ -181,7 +188,7 @@ public class Main {
             contacts[i] = oldList[i];
         }
 
-        contacts[oldList.length] = new Contact(firstName, lastName, phoneNumber);
+        contacts[oldList.length] = new Contact(firstName, lastName, phoneNumber,age, address);
     }
 
     public static void displayContacts(){
@@ -250,10 +257,17 @@ class Contact{
 
     private String number;
 
-    public Contact(String firstName, String lastName, String number) {
+    private String age;
+
+    private String address;
+
+
+    public Contact(String firstName, String lastName, String number, String age, String address) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.number = number;
+        this.age = age;
+        this.address = address;
     }
 
     public String getFirstName(){
@@ -268,6 +282,13 @@ class Contact{
         return number;
     }
 
+    public String getAge(){
+        return age;
+    }
+
+    public String getAddress(){
+        return address;
+    }
 
 
     public void setFirstName(String firstName){
@@ -283,7 +304,16 @@ class Contact{
         this.number = number;
     }
 
+    public void setAge(String age){
+        this.age = age;
+    }
+
+    public void setAddress(String address){
+        this.address = address;
+    }
+
+
     public void displayContact(){
-        System.out.println(firstName + " " + lastName + " " + number);
+        System.out.println(firstName + " " + lastName + " " + number + " " + age + " years " + address);
     }
 }
