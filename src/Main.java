@@ -42,13 +42,15 @@ public class Main {
 
     public static void searchContact(){
 
-        boolean found = false;
         System.out.println("enter firstname.");
-        //String x = scanner.nextLine();
+        String x = scanner.nextLine();
+        boolean found = false;
 
-        //for(){
-
-        //}
+        for(Contact contact : contacts){
+            if (contact.getFirstName().contains(x) || contact.getLastName().contains(x)){
+                System.out.println(contact);
+            }
+        }
 
     }
 
