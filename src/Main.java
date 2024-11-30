@@ -42,16 +42,19 @@ public class Main {
 
     public static void searchContact(){
 
-        System.out.println("enter firstname.");
+        System.out.println("enter firstname or lastname.");
         String x = scanner.nextLine();
         boolean found = false;
 
         for(Contact contact : contacts){
             if (contact.getFirstName().contains(x) || contact.getLastName().contains(x)){
                 System.out.println(contact);
+                found =true;
             }
         }
-
+        if(!found){
+            System.out.println("could not find "+x);
+        }
     }
 
     public static void loginPrompt(){
