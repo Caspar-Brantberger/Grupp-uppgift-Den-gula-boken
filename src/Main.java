@@ -40,22 +40,7 @@ public class Main {
 
     }
 
-    public static void searchContact(){
 
-        System.out.println("enter firstname or lastname.");
-        String x = scanner.nextLine();
-        boolean found = false;
-
-        for(Contact contact : contacts){
-            if (contact.getFirstName().contains(x) || contact.getLastName().contains(x)){
-                System.out.println(contact);
-                found =true;
-            }
-        }
-        if(!found){
-            System.out.println("could not find "+x);
-        }
-    }
 
     public static void loginPrompt(){
         System.out.println("Hello, how would you like to login?");
@@ -139,7 +124,7 @@ public class Main {
                 newContact();
                 break;
             case "4":
-                System.out.println("Sökfunktion ej gjord än!"); //lägg i funktion här -----------------
+                searchContact();
                 break;
             case "5":
                 isAdmin = false;
@@ -161,7 +146,7 @@ public class Main {
                 displayContacts();
                 break;
             case "2":
-                searchContact(); //lägg i funktion här --------------------------------------------------
+                searchContact();
                 break;
             case "3":
                 isLoggedIn = false;
@@ -169,6 +154,23 @@ public class Main {
                 break;
             default:
                 System.out.println("Not a valid input");
+        }
+    }
+
+    public static void searchContact(){
+
+        System.out.println("enter firstname or lastname.");
+        String x = scanner.nextLine();
+        boolean found = false;
+
+        for(Contact contact : contacts){
+            if (contact.getFirstName().toLowerCase().contains(x) || contact.getLastName().toLowerCase().contains(x)){
+                System.out.println(contact);
+                found =true;
+            }
+        }
+        if(!found){
+            System.out.println("could not find "+x);
         }
     }
 
