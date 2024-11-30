@@ -15,7 +15,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        createContact("ange", "sjo", "00000", "21", "skogen");
+        createContact("Angelica", "Sjödin", "0739666834", "21", "Skogen");
         createContact("Elin", "Jirefalk", "0739709078", "20", "Tistelgatan 11");
         createContact("Jonathan", "Jirefalk", "0767747162", "23", "Tistelgatan 11");
         createContact("Elias", "Sjöstedt", "0706419359", "22", "Maskrosgatan 2");
@@ -332,5 +332,10 @@ class Contact{
 
     public void displayContact(){
         System.out.println(firstName + " " + lastName + " " + number + " " + age + " years " + address);
+
+    }
+    @Override
+    public String toString(){
+        return firstName + " " + lastName + " " + number + " " + age + " years " + address;
     }
 }
