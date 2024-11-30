@@ -15,7 +15,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-
+        createContact("ange", "sjo", "00000", "21", "skogen");
         createContact("Elin", "Jirefalk", "0739709078", "20", "Tistelgatan 11");
         createContact("Jonathan", "Jirefalk", "0767747162", "23", "Tistelgatan 11");
         createContact("Elias", "Sjöstedt", "0706419359", "22", "Maskrosgatan 2");
@@ -37,6 +37,18 @@ public class Main {
                 guestInput();
             }
         }
+
+    }
+
+    public static void searchContact(){
+
+        boolean found = false;
+        System.out.println("enter firstname.");
+        //String x = scanner.nextLine();
+
+        //for(){
+
+        //}
 
     }
 
@@ -122,7 +134,7 @@ public class Main {
                 newContact();
                 break;
             case "4":
-                System.out.println("Sökfunktion ej gjord än!");
+                System.out.println("Sökfunktion ej gjord än!"); //lägg i funktion här -----------------
                 break;
             case "5":
                 isAdmin = false;
@@ -144,7 +156,7 @@ public class Main {
                 displayContacts();
                 break;
             case "2":
-                System.out.println("Sökfunktion ej gjord än!");
+                searchContact(); //lägg i funktion här --------------------------------------------------
                 break;
             case "3":
                 isLoggedIn = false;
