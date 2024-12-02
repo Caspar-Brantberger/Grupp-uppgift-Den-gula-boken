@@ -9,28 +9,14 @@ public class App {
     public static boolean isAdmin = true;
     public static boolean isLoggedIn = false;
 
+
+
     public void app(){
+
         createContact("Elin", "Jirefalk", "0739709078", "20", "Tistelgatan 11");
         createContact("Jonathan", "Jirefalk", "0767747162", "23", "Tistelgatan 11");
         createContact("Elias", "Sjöstedt", "0706419359", "22", "Maskrosgatan 2");
-
-        while(runProgram) {
-
-            while(!isLoggedIn) {
-
-                loginPrompt();
-            }
-
-
-            if(isAdmin && runProgram) {
-
-                adminInput();
-            }
-            else if(runProgram) {
-
-                guestInput();
-            }
-        }
+       appLoop();
 
     }
 
@@ -58,6 +44,25 @@ public class App {
                 System.out.println("Invalid Input!");
         }
 
+    }
+    public void appLoop(){
+        while(runProgram) {
+
+            while(!isLoggedIn) {
+
+                loginPrompt();
+            }
+
+
+            if(isAdmin && runProgram) {
+
+                adminInput();
+            }
+            else if(runProgram) {
+
+                guestInput();
+            }
+        }
     }
 
     public static void adminLogin(){
