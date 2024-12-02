@@ -13,6 +13,7 @@ public class App {
         createContact("Elin", "Jirefalk", "0739709078", "20", "Tistelgatan 11");
         createContact("Jonathan", "Jirefalk", "0767747162", "23", "Tistelgatan 11");
         createContact("Elias", "Sjöstedt", "0706419359", "22", "Maskrosgatan 2");
+        createContact("Caspar","Brantberger","07001231231","24","Nyköpingsvägen23");
 
         while(runProgram) {
 
