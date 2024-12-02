@@ -4,7 +4,7 @@ import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class Main {
-//angelica was here testing push
+
 
     static Contact[] contacts = new Contact[0];
     public static Scanner scanner = new Scanner(System.in);
