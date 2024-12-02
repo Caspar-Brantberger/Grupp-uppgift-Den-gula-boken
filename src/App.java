@@ -10,6 +10,7 @@ public class App {
     public static boolean isLoggedIn = false;
 
     public void app(){
+        createContact("Angelica", "Sjödin", "0739666834", "21", "skogen");
         createContact("Elin", "Jirefalk", "0739709078", "20", "Tistelgatan 11");
         createContact("Jonathan", "Jirefalk", "0767747162", "23", "Tistelgatan 11");
         createContact("Elias", "Sjöstedt", "0706419359", "22", "Maskrosgatan 2");
@@ -153,7 +154,7 @@ public class App {
     public static void searchContact(){
 
         System.out.println("enter firstname or lastname.");
-        String x = scanner.nextLine();
+        String x = scanner.nextLine().toLowerCase();
         boolean found = false;
 
         for(Contact contact : contacts){
