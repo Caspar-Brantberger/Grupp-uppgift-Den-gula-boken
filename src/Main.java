@@ -160,7 +160,7 @@ public class Main {
     public static void searchContact(){
 
         System.out.println("enter firstname or lastname.");
-        String x = scanner.nextLine();
+        String x = scanner.nextLine().toLowerCase();
         boolean found = false;
 
         for(Contact contact : contacts){
