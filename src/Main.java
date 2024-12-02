@@ -24,7 +24,6 @@ public class Main {
                 loginPrompt();
             }
 
-
             if(isAdmin && runProgram) {
 
                 adminInput();
