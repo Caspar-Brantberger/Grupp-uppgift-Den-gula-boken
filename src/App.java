@@ -166,12 +166,12 @@ public class App {
 
         for(Contact contact : contacts){
             if (contact.getFirstName().toLowerCase().contains(x) || contact.getLastName().toLowerCase().contains(x)){
-                System.out.println(contact);
-                found =true;
+                contact.displayContact();
+                found = true;
             }
         }
         if(!found){
-            System.out.println("could not find "+x);
+            System.out.println("could not find " + x);
         }
     }
 
