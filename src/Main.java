@@ -196,19 +196,19 @@ public class Main {
         switch(scanner.nextLine()){
             case "1":
                 System.out.println("Enter first name: ");
-                searchFirstName(scanner.nextLine());
+                searchFirstName(scanner.nextLine().toLowerCase().trim());
                 break;
             case "2":
                 System.out.println("Enter last name: ");
-                searchLastName(scanner.nextLine());
+                searchLastName(scanner.nextLine().toLowerCase().trim());
                 break;
             case "3":
                 System.out.println("Enter address: ");
-                searchAddress(scanner.nextLine());
+                searchAddress(scanner.nextLine().toLowerCase().trim());
                 break;
             case "4":
                 System.out.println("Enter any text: ");
-                freeSearch(scanner.nextLine());
+                freeSearch(scanner.nextLine().toLowerCase().trim());
                 break;
             default:
                 System.out.println("Not a valid input!");
@@ -219,38 +219,88 @@ public class Main {
 
     public static void searchFirstName(String firstName){
 
-        System.out.println("All contacts that have the first name " + firstName);
-        for (Contact contact : contacts) {
 
-            if (contact.getFirstName().equals(firstName)) {
+        boolean[] contactFound = new boolean[contacts.length];
+        boolean print = false;
 
-                contact.displayContact();
+        for (int i = 0; i < contacts.length; i++) {
+
+            if(contacts[i].getFirstName().toLowerCase().equals(firstName)){
+
+                contactFound[i] = true;
+                print = true;
             }
+        }
+
+        if (print){
+
+            System.out.println("All contacts that have the first name " + firstName);
+
+            for (int i = 0; i < contactFound.length; i++) {
+
+                if (contactFound[i]){
+
+                    contacts[i].displayContact();
+                }
+            }
+        }
+        else{
+
+            System.out.println("No contact found with first name " + firstName);
         }
     }
 
     public static void searchLastName(String lastName){
 
-        System.out.println("First contact that matches the last name " + lastName);
+        boolean print = true;
+
         for (Contact contact : contacts) {
 
-            if (contact.getLastName().equals(lastName)) {
+            if (contact.getLastName().toLowerCase().equals(lastName)) {
 
+                System.out.println("First contact that matches the last name " + lastName);
                 contact.displayContact();
+                print = false;
                 break;
             }
         }
+
+        if (print){
+
+            System.out.println("No contact found with " + lastName + " as their last name");
+        }
+
     }
 
     public static void searchAddress(String address){
 
-        System.out.println("All contacts that live on " + address);
-        for (Contact contact : contacts) {
+        boolean[] contactFound = new boolean[contacts.length];
+        boolean print = false;
 
-            if (contact.getAddress().equals(address)) {
+        for (int i = 0; i < contacts.length; i++) {
 
-                contact.displayContact();
+            if(contacts[i].getAddress().toLowerCase().equals(address)){
+
+                contactFound[i] = true;
+                print = true;
             }
+        }
+
+        if (print){
+
+            System.out.println("All contacts that live on " + address);
+
+            for (int i = 0; i < contactFound.length; i++) {
+
+                if (contactFound[i]){
+
+                    contacts[i].displayContact();
+                }
+            }
+        }
+        else{
+
+            System.out.println("No contact found that lives on address " + address);
         }
     }
 
@@ -265,7 +315,7 @@ public class Main {
 
         for (int i = 0; i < contacts.length; i++) {
 
-            if(contacts[i].getFirstName().contains(text)) {
+            if(contacts[i].getFirstName().toLowerCase().equals(text)) {
 
                 contactMatching[i] = true;
 
@@ -274,7 +324,7 @@ public class Main {
 
         for (int i = 0; i < contacts.length; i++) {
 
-            if(contacts[i].getLastName().contains(text)) {
+            if(contacts[i].getLastName().toLowerCase().contains(text)) {
 
                 contactMatching[i] = true;
             }
@@ -282,7 +332,7 @@ public class Main {
 
         for (int i = 0; i < contacts.length; i++) {
 
-            if(contacts[i].getAddress().contains(text)) {
+            if(contacts[i].getAddress().toLowerCase().contains(text)) {
 
                 contactMatching[i] = true;
             }
@@ -305,6 +355,7 @@ public class Main {
         }
 
         System.out.println("Here are all contacts matching the input text: ");
+
         for (int i = 0; i < contacts.length; i++) {
 
             if(contactMatching[i]) {
@@ -364,7 +415,10 @@ public class Main {
 
         contacts = new Contact[oldList.length + 1];
 
-        System.arraycopy(oldList, 0, contacts, 0, oldList.length);
+        for (int i = 0; i < oldList.length; i++) {
+
+            contacts[i] = oldList[i];
+        }
 
         contacts[oldList.length] = new Contact(firstName, lastName, phoneNumber,age, address);
     }
