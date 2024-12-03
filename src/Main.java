@@ -122,18 +122,40 @@ public class Main {
 
         switch(scanner.nextLine()){
             case "1":
+
+                if (contacts.length == 0){
+                    System.out.println("Contact list is empty!");
+                    break;
+                }
+
                 displayContacts();
                 break;
             case "2":
+
+                if (contacts.length == 0){
+                    System.out.println("Contact list is empty!");
+                    break;
+                }
+
                 chooseContactToDelete();
                 break;
             case "3":
                 newContact();
                 break;
             case "4":
+                if (contacts.length == 0){
+                    System.out.println("Contact list is empty!");
+                    break;
+                }
+
                 searchContact();
                 break;
             case "5":
+                if (contacts.length == 0){
+                    System.out.println("Contact list is empty!");
+                    break;
+                }
+
                 editContact();
                 break;
             case "6":
@@ -149,6 +171,7 @@ public class Main {
 
         System.out.println(" ");
         System.out.println("Which contact would you like to edit?");
+        System.out.println(" ");
 
 
         for (int i = 0; i < contacts.length; i++) {
@@ -159,12 +182,7 @@ public class Main {
 
         String userInput = scanner.nextLine();
 
-        if (!userInput.matches("([1-9]\\d*)")){
-
-            System.out.println("Please enter a number");
-            editContact();
-        }
-        else if (Integer.parseInt(userInput) < 1 || Integer.parseInt(userInput) > contacts.length){
+        if(Integer.parseInt(isNumber(userInput)) < 1 || Integer.parseInt(isNumber(userInput)) > contacts.length){
 
             System.out.println("Number not valid");
             editContact();
@@ -200,11 +218,11 @@ public class Main {
                 break;
             case "3":
                 System.out.println("What would you like to replace " + contacts[index].getNumber() + " with?");
-                contacts[index].setNumber(scanner.nextLine());
+                contacts[index].setNumber(isNumber(scanner.nextLine()));
                 break;
             case "4":
                 System.out.println("What would you like to replace " + contacts[index].getAge() + " with?");
-                contacts[index].setAge(scanner.nextLine());
+                contacts[index].setAge(isNumber(scanner.nextLine()));
                 break;
             case "5":
                 System.out.println("What would you like to replace " + contacts[index].getAddress() + " with?");
@@ -219,7 +237,6 @@ public class Main {
         System.out.println("Contact updated successfully!");
         System.out.print("Updated contact info: ");
         contacts[index].displayContact();
-
     }
 
     public static void searchContact(){
@@ -452,7 +469,18 @@ public class Main {
         }
     }
 
-    public static void  newContact(){
+    public static String isNumber(String user){
+
+        while (!user.matches("(\\d*)")){
+            System.out.println(" ");
+            System.out.println("Invalid input, please insert a number");
+            user = scanner.nextLine();
+        }
+
+        return user;
+    }
+
+    public static void newContact(){
 
         System.out.println(" ");
         System.out.println("Please insert firstname of contact");
@@ -464,11 +492,12 @@ public class Main {
 
         System.out.println(" ");
         System.out.println("Please insert phone number of contact");
-        String phoneNumber = scanner.nextLine();
+        String phoneNumber = isNumber(scanner.nextLine());
 
         System.out.println(" ");
         System.out.println("Please insert age of contact");
-        String age = scanner.nextLine();
+        String age = isNumber(scanner.nextLine());
+
 
         System.out.println(" ");
         System.out.println("Please insert address of contact");
@@ -519,13 +548,8 @@ public class Main {
 
         String userInput = scanner.nextLine();
 
-        if (!userInput.matches("([1-9]\\d*)")){
 
-            System.out.println("Please enter a number");
-            chooseContactToDelete();
-
-        }
-        else if (Integer.parseInt(userInput) < 1 || Integer.parseInt(userInput) > contacts.length){
+        if (Integer.parseInt(isNumber(userInput)) < 1 || Integer.parseInt(isNumber(userInput)) > contacts.length){
 
             System.out.println("Number not valid");
             chooseContactToDelete();
