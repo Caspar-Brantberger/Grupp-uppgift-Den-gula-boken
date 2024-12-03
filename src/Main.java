@@ -382,7 +382,7 @@ public class Main {
 
         for (int i = 0; i < contacts.length; i++) {
 
-            if(contacts[i].getFirstName().toLowerCase().equals(text)) {
+            if(contacts[i].getFirstName().toLowerCase().contains(text)) {
 
                 contactMatching[i] = true;
                 anyMatch = true;
