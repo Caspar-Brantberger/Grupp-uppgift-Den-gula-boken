@@ -180,9 +180,9 @@ public class Main {
             contacts[i].displayContact();
         }
 
-        String userInput = scanner.nextLine();
+        String userInput = isNumber(scanner.nextLine());
 
-        if(Integer.parseInt(isNumber(userInput)) < 1 || Integer.parseInt(isNumber(userInput)) > contacts.length){
+        if(Integer.parseInt(userInput) < 1 || Integer.parseInt(userInput) > contacts.length){
 
             System.out.println("Number not valid");
             editContact();
@@ -471,7 +471,7 @@ public class Main {
 
     public static String isNumber(String user){
 
-        while (!user.matches("(\\d*)")){
+        while (!user.matches("(\\d*)") || user.isEmpty()){
             System.out.println(" ");
             System.out.println("Invalid input, please insert a number");
             user = scanner.nextLine();
@@ -546,10 +546,10 @@ public class Main {
             index++;
         }
 
-        String userInput = scanner.nextLine();
+        String userInput = isNumber(scanner.nextLine());
 
 
-        if (Integer.parseInt(isNumber(userInput)) < 1 || Integer.parseInt(isNumber(userInput)) > contacts.length){
+        if (Integer.parseInt(userInput) < 1 || Integer.parseInt(userInput) > contacts.length){
 
             System.out.println("Number not valid");
             chooseContactToDelete();
