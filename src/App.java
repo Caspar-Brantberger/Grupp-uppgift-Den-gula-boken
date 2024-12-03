@@ -1,4 +1,6 @@
 import java.util.Scanner;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class App {
     static Contact[] contacts = new Contact[0];
@@ -113,7 +115,8 @@ public class App {
         System.out.println("2. Remove Contact");
         System.out.println("3. Create New Contact");
         System.out.println("4. Search Contact");
-        System.out.println("5. Logout");
+        System.out.println("5. Save Contacts to File");
+        System.out.println("6. Logout");
 
         switch(scanner.nextLine()){
             case "1":
@@ -129,6 +132,9 @@ public class App {
                 searchContact();
                 break;
             case "5":
+                saveContactsToFile("contacts.txt");
+                break;
+            case "6":
                 isAdmin = false;
                 isLoggedIn = false;
                 break;
@@ -263,6 +269,18 @@ public class App {
         contacts = newList;
 
         System.out.println("Contact Removed!");
+    }
+
+    public static void saveContactsToFile(String fileName) {
+        try (FileWriter writer = new FileWriter(fileName)) {
+            for (Contact contact : contacts) {
+                writer.write(contact.getFirstName() + "," + contact.getLastName() + "," +
+                        contact.getNumber() + "," + contact.getAge() + "," + contact.getAddress() + "\n");
+            }
+            System.out.println("Contacts saved to " + fileName);
+        } catch (IOException e) {
+            System.out.println("Error saving contacts to file: " + e.getMessage());
+        }
     }
 
 
