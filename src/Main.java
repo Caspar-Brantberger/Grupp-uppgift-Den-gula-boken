@@ -1,3 +1,4 @@
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class Main {
@@ -37,6 +38,8 @@ public class Main {
     }
 
     public static void loginPrompt(){
+
+        System.out.println(" ");
         System.out.println("Hello, how would you like to login?");
         System.out.println("1. Guest");
         System.out.println("2. Admin");
@@ -68,6 +71,7 @@ public class Main {
         int indexOfName = 0;
         boolean validUsername = false;
 
+        System.out.println(" ");
         System.out.println("Please Insert Username:");
         String username = scanner.nextLine();
 
@@ -85,14 +89,20 @@ public class Main {
             adminLogin();
         }
         else{
+
+            System.out.println(" ");
             System.out.println("User: " + userName[indexOfName]);
             System.out.println("Please insert password: ");
 
             while(!scanner.nextLine().equals(password[indexOfName])) {
 
+                System.out.println(" ");
                 System.out.println("Password incorrect, please try again!");
+                System.out.println(" ");
+                System.out.println("Please insert password: ");
             }
 
+            System.out.println(" ");
             System.out.println("Successfully logged in as " + userName[indexOfName] + "!");
             isAdmin = true;
             isLoggedIn = true;
@@ -100,6 +110,8 @@ public class Main {
     }
 
     public static void adminInput(){
+
+        System.out.println(" ");
         System.out.println("What action would you like to do?");
         System.out.println("1. Display phonebook");
         System.out.println("2. Remove Contact");
@@ -135,6 +147,7 @@ public class Main {
 
     public static void editContact(){
 
+        System.out.println(" ");
         System.out.println("Which contact would you like to edit?");
 
 
@@ -144,10 +157,32 @@ public class Main {
             contacts[i].displayContact();
         }
 
-        int contactToEditIndex = (Integer.parseInt(scanner.nextLine()) - 1);
+        String userInput = scanner.nextLine();
 
-        System.out.println(contacts[contactToEditIndex].getFirstName() + " " + contacts[contactToEditIndex].getLastName() + " is chosen for editing!");
+        if (!userInput.matches("([1-9]\\d*)")){
+
+            System.out.println("Please enter a number");
+            editContact();
+        }
+        else if (Integer.parseInt(userInput) < 1 || Integer.parseInt(userInput) > contacts.length){
+
+            System.out.println("Number not valid");
+            editContact();
+        }
+        else{
+
+            chosenContactToEdit(Integer.parseInt(userInput) - 1);
+        }
+    }
+
+    public static void chosenContactToEdit(int index){
+
+        System.out.println(" ");
+
+        System.out.println(contacts[index].getFirstName() + " " + contacts[index].getLastName() + " is chosen for editing!");
         System.out.println("What property would you like to edit?");
+
+        System.out.println(" ");
         System.out.println("1. First Name");
         System.out.println("2. Last Name");
         System.out.println("3. Phone Number");
@@ -156,36 +191,40 @@ public class Main {
 
         switch(scanner.nextLine()){
             case "1":
-                System.out.println("What would you like to replace " + contacts[contactToEditIndex].getFirstName() + " with?");
-                contacts[contactToEditIndex].setFirstName(scanner.nextLine());
+                System.out.println("What would you like to replace " + contacts[index].getFirstName() + " with?");
+                contacts[index].setFirstName(scanner.nextLine());
                 break;
             case "2":
-                System.out.println("What would you like to replace " + contacts[contactToEditIndex].getLastName() + " with?");
-                contacts[contactToEditIndex].setLastName(scanner.nextLine());
+                System.out.println("What would you like to replace " + contacts[index].getLastName() + " with?");
+                contacts[index].setLastName(scanner.nextLine());
                 break;
             case "3":
-                System.out.println("What would you like to replace " + contacts[contactToEditIndex].getNumber() + " with?");
-                contacts[contactToEditIndex].setNumber(scanner.nextLine());
+                System.out.println("What would you like to replace " + contacts[index].getNumber() + " with?");
+                contacts[index].setNumber(scanner.nextLine());
                 break;
             case "4":
-                System.out.println("What would you like to replace " + contacts[contactToEditIndex].getAge() + " with?");
-                contacts[contactToEditIndex].setAge(scanner.nextLine());
+                System.out.println("What would you like to replace " + contacts[index].getAge() + " with?");
+                contacts[index].setAge(scanner.nextLine());
                 break;
             case "5":
-                System.out.println("What would you like to replace " + contacts[contactToEditIndex].getAddress() + " with?");
-                contacts[contactToEditIndex].setAddress(scanner.nextLine());
+                System.out.println("What would you like to replace " + contacts[index].getAddress() + " with?");
+                contacts[index].setAddress(scanner.nextLine());
                 break;
             default:
                 System.out.println("Not a valid input!");
-                scanner.nextLine();
+                chosenContactToEdit(index);
         }
 
+        System.out.println(" ");
         System.out.println("Contact updated successfully!");
         System.out.print("Updated contact info: ");
-        contacts[contactToEditIndex].displayContact();
+        contacts[index].displayContact();
+
     }
 
     public static void searchContact(){
+
+        System.out.println(" ");
         System.out.println("What attribute would you like to search?");
         System.out.println("1. First Name");
         System.out.println("2. Last Name");
@@ -194,24 +233,29 @@ public class Main {
 
         switch(scanner.nextLine()){
             case "1":
+                System.out.println(" ");
                 System.out.println("Enter first name: ");
                 searchFirstName(scanner.nextLine().toLowerCase().trim());
                 break;
             case "2":
+                System.out.println(" ");
                 System.out.println("Enter last name: ");
                 searchLastName(scanner.nextLine().toLowerCase().trim());
                 break;
             case "3":
+                System.out.println(" ");
                 System.out.println("Enter address: ");
                 searchAddress(scanner.nextLine().toLowerCase().trim());
                 break;
             case "4":
+                System.out.println(" ");
                 System.out.println("Enter any text: ");
                 freeSearch(scanner.nextLine().toLowerCase().trim());
                 break;
             default:
+                System.out.println(" ");
                 System.out.println("Not a valid input!");
-                scanner.nextLine();
+                searchContact();
         }
 
     }
@@ -233,6 +277,7 @@ public class Main {
 
         if (print){
 
+            System.out.println(" ");
             System.out.println("All contacts that have the first name " + firstName);
 
             for (int i = 0; i < contactFound.length; i++) {
@@ -245,6 +290,7 @@ public class Main {
         }
         else{
 
+            System.out.println(" ");
             System.out.println("No contact found with first name " + firstName);
         }
     }
@@ -257,6 +303,7 @@ public class Main {
 
             if (contact.getLastName().toLowerCase().equals(lastName)) {
 
+                System.out.println(" ");
                 System.out.println("First contact that matches the last name " + lastName);
                 contact.displayContact();
                 print = false;
@@ -266,6 +313,7 @@ public class Main {
 
         if (print){
 
+            System.out.println(" ");
             System.out.println("No contact found with " + lastName + " as their last name");
         }
 
@@ -287,6 +335,7 @@ public class Main {
 
         if (print){
 
+            System.out.println(" ");
             System.out.println("All contacts that live on " + address);
 
             for (int i = 0; i < contactFound.length; i++) {
@@ -299,6 +348,7 @@ public class Main {
         }
         else{
 
+            System.out.println(" ");
             System.out.println("No contact found that lives on address " + address);
         }
     }
@@ -306,6 +356,7 @@ public class Main {
     public static void freeSearch(String text){
 
         boolean[] contactMatching = new boolean[contacts.length];
+        boolean anyMatch = false;
 
         for (int i = 0; i < contacts.length; i++) {
 
@@ -317,7 +368,7 @@ public class Main {
             if(contacts[i].getFirstName().toLowerCase().equals(text)) {
 
                 contactMatching[i] = true;
-
+                anyMatch = true;
             }
         }
 
@@ -326,6 +377,7 @@ public class Main {
             if(contacts[i].getLastName().toLowerCase().contains(text)) {
 
                 contactMatching[i] = true;
+                anyMatch = true;
             }
         }
 
@@ -334,6 +386,7 @@ public class Main {
             if(contacts[i].getAddress().toLowerCase().contains(text)) {
 
                 contactMatching[i] = true;
+                anyMatch = true;
             }
         }
 
@@ -342,6 +395,7 @@ public class Main {
             if(contacts[i].getNumber().contains(text)) {
 
                 contactMatching[i] = true;
+                anyMatch = true;
             }
         }
 
@@ -350,21 +404,33 @@ public class Main {
             if(contacts[i].getAge().contains(text)) {
 
                 contactMatching[i] = true;
+                anyMatch = true;
             }
         }
 
-        System.out.println("Here are all contacts matching the input text: ");
+        if (!anyMatch) {
 
-        for (int i = 0; i < contacts.length; i++) {
+            System.out.println("No contact found matching your input");
+        }
+        else{
 
-            if(contactMatching[i]) {
+            System.out.println(" ");
+            System.out.println("Here are all contacts matching the input text: ");
+            System.out.println(" ");
 
-                contacts[i].displayContact();
+            for (int i = 0; i < contacts.length; i++) {
+
+                if(contactMatching[i]) {
+
+                    contacts[i].displayContact();
+                }
             }
         }
+
     }
 
     public static void guestInput(){
+        System.out.println(" ");
         System.out.println("What action would you like to do?");
         System.out.println("1. Display phonebook");
         System.out.println("2. Search Contact");
@@ -388,23 +454,28 @@ public class Main {
 
     public static void  newContact(){
 
+        System.out.println(" ");
         System.out.println("Please insert firstname of contact");
         String firstName = scanner.nextLine();
 
+        System.out.println(" ");
         System.out.println("Please insert lastname of contact");
         String lastName = scanner.nextLine();
 
+        System.out.println(" ");
         System.out.println("Please insert phone number of contact");
         String phoneNumber = scanner.nextLine();
 
+        System.out.println(" ");
         System.out.println("Please insert age of contact");
         String age = scanner.nextLine();
 
+        System.out.println(" ");
         System.out.println("Please insert address of contact");
         String address = scanner.nextLine();
 
         createContact(firstName, lastName, phoneNumber, age, address);
-
+        System.out.println(" ");
         System.out.println("Contact Added!");
     }
 
@@ -424,12 +495,18 @@ public class Main {
 
     public static void displayContacts(){
 
+        System.out.println(" ");
+
         for (Contact c : contacts){
             c.displayContact();
         }
     }
 
     public static void chooseContactToDelete(){
+
+        System.out.println(" ");
+        System.out.println("Input corresponding number to contact you want to delete");
+        System.out.println(" ");
 
         int index = 1;
 
@@ -440,11 +517,23 @@ public class Main {
             index++;
         }
 
-        System.out.println("Input corresponding number to contact you want to delete");
+        String userInput = scanner.nextLine();
 
-        int userInput = Integer.parseInt(scanner.nextLine());
+        if (!userInput.matches("([1-9]\\d*)")){
 
-        deleteContact(userInput - 1);
+            System.out.println("Please enter a number");
+            chooseContactToDelete();
+
+        }
+        else if (Integer.parseInt(userInput) < 1 || Integer.parseInt(userInput) > contacts.length){
+
+            System.out.println("Number not valid");
+            chooseContactToDelete();
+        }
+        else{
+
+            deleteContact(Integer.parseInt(userInput) - 1);
+        }
     }
 
     public static void deleteContact(int index){
@@ -467,13 +556,14 @@ public class Main {
                 break;
 
             }else{
+
                 newList[i] = contacts[i + 1];
             }
         }
 
-        contacts = newList;
+        System.out.println(contacts[index].getFirstName() + " " + contacts[index].getLastName() + " has been deleted!");
 
-        System.out.println("Contact Removed!");
+        contacts = newList;
     }
 }
 
