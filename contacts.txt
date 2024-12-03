@@ -1,0 +1,5 @@
+Elin,Jirefalk,0739709078,20,Tistelgatan 11
+Jonathan,Jirefalk,0767747162,23,Tistelgatan 11
+Elias,Sjöstedt,0706419359,22,Maskrosgatan 2
+Caspar,Brantberger,07001231231,24,Nyköpingsvägen23
+Hej,hejsan,2,23,gatan

@@ -1,13 +1,12 @@
 import java.util.Scanner;
 
 public class Input {
+    FileSearch fh = new FileSearch();
     Contact cs = new Contact();
     Search sh = new Search();
-    Login ln = new Login();
-    FileSearch fs = new FileSearch();
     Input in = new Input();
     Scanner scanner = new Scanner(System.in);
-    public static boolean runProgram = true;
+    App app = new App();
 
     public static boolean isAdmin = true;
     public static boolean isLoggedIn = false;
@@ -39,7 +38,7 @@ public class Input {
                     System.out.println("Contact list is empty!");
                     break;
                 }
-                //displayContacts();
+                cs.displayContacts();
                 break;
             case "2":
 
@@ -62,6 +61,7 @@ public class Input {
                 sh.searchContact();
                 break;
             case "5":
+                fh.saveContactsToFile("contacts.txt");
                 if (Contact.contacts.length == 0){
                     System.out.println("Contact list is empty!");
                     break;

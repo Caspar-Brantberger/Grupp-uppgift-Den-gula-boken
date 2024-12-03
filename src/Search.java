@@ -3,9 +3,6 @@ import java.util.Scanner;
 public class Search {
     Contact cs = new Contact();
     Search sh = new Search();
-    Login ln = new Login();
-    FileSearch fs = new FileSearch();
-    Input in = new Input();
     Scanner scanner = new Scanner(System.in);
 
     public Search getSh() {
@@ -92,7 +89,8 @@ public class Search {
 
         boolean print = true;
 
-        for (Contact contact : Contact.contacts) {
+        for (Contact contacts : Contact.contacts)
+         {
 
             if (cs.getLastName().toLowerCase().equals(lastName)) {
 
