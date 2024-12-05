@@ -8,8 +8,6 @@ public class CreateFunctions {
 
     public void newContact(){
 
-
-
         System.out.println(" ");
         System.out.println("Please insert firstname of contact");
         String firstName = scanner.nextLine();
@@ -20,7 +18,7 @@ public class CreateFunctions {
 
         System.out.println(" ");
         System.out.println("Please insert phone number of contact");
-        String phoneNumber = (scanner.nextLine());
+        String phoneNumber = checkFunctions.isNumber(scanner.nextLine());
 
         System.out.println(" ");
         System.out.println("Please insert age of contact");
